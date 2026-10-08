@@ -49,7 +49,7 @@ Many consumer-grade Wi-Fi cameras transmit authentication credentials over unenc
 
 ### Target Device — Xiaomi Mi Home Security Camera
 
-![Xiaomi Camera|330](screenshots/xiaomi-camera.jpg)
+<img src="screenshots/xiaomi-camera.jpg" width="500" height="300">
 
 *The target Xiaomi Mi Home Security Camera used in the lab environment.*
 
