@@ -33,6 +33,26 @@ Many consumer-grade Wi-Fi cameras transmit authentication credentials over unenc
 **Attack Surface:** HTTP-based web management interface on LAN  
 **Key Finding:** Credentials transmitted in plaintext over HTTP are trivially interceptable via ARP cache poisoning
 
+## Screenshots
+
+### Bettercap — Network Reconnaissance & ARP Spoofing
+
+![Bettercap ARP Spoofing](screenshots/bettercap-arp-spoofing.png)
+
+*Bettercap v2.33.0 running on Kali Linux — network probe discovering endpoints including the Xiaomi camera at `192.168.1.8`, followed by full-duplex ARP spoofing and packet sniffing capturing DNS traffic from the target.*
+
+### Bettercap — Annotated Attack Breakdown
+
+![Bettercap Annotated](screenshots/bettercap-annotated.png)
+
+*Annotated terminal output highlighting key stages: target identification (Xiaomi Electronics OUI), ARP spoof configuration (`fullduplex true`, target `192.168.1.8`), and intercepted DNS queries confirming MITM position.*
+
+### Target Device — Xiaomi Mi Home Security Camera
+
+![Xiaomi Camera](screenshots/xiaomi-camera.jpg)
+
+*The target Xiaomi Mi Home Security Camera used in the lab environment.*
+
 ## Attack Vector
 
 ```
@@ -139,26 +159,6 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt \
 | `-t 16` | Number of parallel threads |
 | `-f` | Stop on first valid credential |
 | `http-get /` | HTTP Basic Auth on root path |
-
-## Screenshots
-
-### Bettercap — Network Reconnaissance & ARP Spoofing
-
-![Bettercap ARP Spoofing](screenshots/bettercap-arp-spoofing.png)
-
-*Bettercap v2.33.0 running on Kali Linux — network probe discovering endpoints including the Xiaomi camera at `192.168.1.8`, followed by full-duplex ARP spoofing and packet sniffing capturing DNS traffic from the target.*
-
-### Bettercap — Annotated Attack Breakdown
-
-![Bettercap Annotated](screenshots/bettercap-annotated.png)
-
-*Annotated terminal output highlighting key stages: target identification (Xiaomi Electronics OUI), ARP spoof configuration (`fullduplex true`, target `192.168.1.8`), and intercepted DNS queries confirming MITM position.*
-
-### Target Device — Xiaomi Mi Home Security Camera
-
-![Xiaomi Camera](screenshots/xiaomi-camera.jpg)
-
-*The target Xiaomi Mi Home Security Camera used in the lab environment.*
 
 ## Mitigation & Hardening
 
